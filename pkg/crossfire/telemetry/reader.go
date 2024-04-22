@@ -7,12 +7,13 @@ package telemetry
 import (
 	"errors"
 	"fmt"
+	"io"
+
 	"github.com/kaack/elrs-joystick-control/pkg/crc"
 	"github.com/kaack/elrs-joystick-control/pkg/crossfire"
 	"github.com/kaack/elrs-joystick-control/pkg/serial"
 	"golang.org/x/exp/slices"
 	"gopkg.in/tomb.v2"
-	"io"
 )
 
 type Reader struct {
@@ -58,13 +59,13 @@ func (s *Reader) Next(tomb *tomb.Tomb) (TelemType, error) {
 			s.start = 0
 			s.end = 0
 			if s.currentCapacity > s.initialCapacity {
-				//fmt.Printf("resetting buffer to initial capacity, start: %v, end: %v\n", s.start, s.end)
+				fmt.Printf("resetting buffer to initial capacity, start: %v, end: %v\n", s.start, s.end)
 				s.Buffer = make([]uint8, s.initialCapacity)
 				s.currentCapacity = s.initialCapacity
 			}
 		}
 
-		//fmt.Printf("capacity: %v, start: %v, end: %v\n", s.currentCapacity, s.start, s.end)
+		fmt.Printf("capacity: %v, start: %v, end: %v\n", s.currentCapacity, s.start, s.end)
 
 		count = 0
 		for count == 0 {
@@ -85,7 +86,7 @@ func (s *Reader) Next(tomb *tomb.Tomb) (TelemType, error) {
 
 		s.end += count
 		if s.end == s.currentCapacity {
-			//fmt.Printf("doubling capacity, start: %v, end: %v\n", s.start, s.end)
+			fmt.Printf("doubling capacity, start: %v, end: %v\n", s.start, s.end)
 			newCap = s.currentCapacity * 2
 			newBuf = make([]uint8, newCap)
 			copy(newBuf, s.Buffer)
@@ -117,7 +118,7 @@ func (s *Reader) Next(tomb *tomb.Tomb) (TelemType, error) {
 func Split(data []byte, atEOF bool) (advance int, token *[]byte, err error) {
 	dataLen := int32(len(data))
 
-	//fmt.Printf("split: eof: %v, len: %d, data: %x\n", atEOF, dataLen, data)
+	fmt.Printf("split: eof: %v, len: %d, data: %x\n", atEOF, dataLen, data)
 	if atEOF && len(data) == 0 {
 		return 0, nil, io.EOF
 	}
@@ -126,10 +127,10 @@ func Split(data []byte, atEOF bool) (advance int, token *[]byte, err error) {
 		return isTelemetryAddress(crossfire.Endpoint(c))
 	}))
 
-	//fmt.Printf("frameStart: %d\n", frameStart)
+	fmt.Printf("frameStart: %d\n", frameStart)
 
 	if frameStart < 0 {
-		//fmt.Printf("no frame found, skip entire data buffer\n")
+		fmt.Printf("no frame found, skip entire data buffer\n")
 		return len(data), nil, nil
 	}
 
@@ -137,7 +138,7 @@ func Split(data []byte, atEOF bool) (advance int, token *[]byte, err error) {
 		if atEOF {
 			return 0, nil, errors.New(fmt.Sprintf("incomplete frame, stopped at frame id %x", data[frameStart]))
 		}
-		//fmt.Printf("frame found at end of buffer, need more data\n")
+		fmt.Printf("frame found at end of buffer, need more data\n")
 		return 0, nil, nil
 	}
 
@@ -148,11 +149,11 @@ func Split(data []byte, atEOF bool) (advance int, token *[]byte, err error) {
 		if atEOF {
 			return 0, nil, errors.New(fmt.Sprintf("incomplete frame, need %d bytes but only %d remain", frameLength, remainingBytes))
 		}
-		//fmt.Printf("frameLength: %d, remainingBytes: %d, need more data ...\n", frameLength, remainingBytes)
+		fmt.Printf("frameLength: %d, remainingBytes: %d, need more data ...\n", frameLength, remainingBytes)
 		return 0, nil, nil
 	}
 
-	//fmt.Printf("frameLength: %d, remainingBytes: %d, have full frame, checking crc ...\n", frameLength, remainingBytes)
+	fmt.Printf("frameLength: %d, remainingBytes: %d, have full frame, checking crc ...\n", frameLength, remainingBytes)
 
 	if frameLength == 0 {
 		return int(frameStart) + 1, nil, nil
@@ -160,19 +161,19 @@ func Split(data []byte, atEOF bool) (advance int, token *[]byte, err error) {
 
 	// have enough data for a frame
 	frame := data[frameStart : frameStart+1+frameLength+1]
-	//fmt.Printf("frame: %x", frame)
+	fmt.Printf("frame: %x", frame)
 	frameCrc8 := frame[len(frame)-1]
 
-	//fmt.Printf("frameCrc8: %x\n", frameCrc8)
+	fmt.Printf("frameCrc8: %x\n", frameCrc8)
 	computedCrc8 := crc.D5(frame[2 : len(frame)-1])
-	//fmt.Printf("computedCrc8: %x\n", computedCrc8)
+	fmt.Printf("computedCrc8: %x\n", computedCrc8)
 	if computedCrc8 != frameCrc8 {
 		//bad frame detect at frameStart, skip this byte
 		return int(frameStart) + 1, nil, errors.New("frame crc mismatch")
 	}
 
 	skip := frameStart + int32(len(frame))
-	//fmt.Printf("skip: %d, frame: %x\n", skip, frame)
+	fmt.Printf("skip: %d, frame: %x\n", skip, frame)
 	return int(skip), &frame, nil
 }
 
@@ -184,20 +185,20 @@ func Unmarshal(data []byte) (TelemType, error) {
 	fAddr := crossfire.Endpoint(data[0])
 	fType := crossfire.FrameType(data[2])
 
-	if fAddr == crossfire.HandsetEndpoint && fType == crossfire.StatusFrame {
+	if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.StatusFrame {
 		frame := StatusExtFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.ParameterSettingsEntryFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.ParameterSettingsEntryFrame {
 		if len(data) < MinExtendedFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as extended device entry settings telemetry frame. length is too small", data))
 		}
 		return NewDeviceSettingsEntryExtFrame(data), nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.DeviceInfoFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.DeviceInfoFrame {
 		if len(data) < MinExtendedFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as extended device info telemetry frame. length is too small", data))
 		}
 		return NewDeviceInfoExtFrame(data), nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.RadioFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.RadioFrame {
 		if len(data) < MinExtendedFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as extended radio telemetry frame. length is too small", data))
 		}
@@ -206,47 +207,47 @@ func Unmarshal(data []byte) (TelemType, error) {
 			frame := SyncExtFrame{RawData: data}
 			return &frame, nil
 		}
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.BatteryFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.BatteryFrame {
 		if len(data) != BatteryFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as battery telemetry frame. expected length %d, but got %d", data, BatteryFrameSize, len(data)))
 		}
 		frame := BatteryFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.AltitudeFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.AltitudeFrame {
 		if len(data) < AttitudeFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as attitude telemetry frame. expected length %d, but got %d", data, AttitudeFrameSize, len(data)))
 		}
 		frame := AttitudeFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.FlightModeFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.FlightModeFrame {
 		//frame is variable size (depends on the mode)
 		frame := FlightModeFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.LinkStatsFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.LinkStatsFrame {
 		if len(data) < LinkStatsFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as link-stats telemetry frame. expected length %d, but got %d", data, LinkStatsFrameSize, len(data)))
 		}
 		frame := LinkStatsFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.LinkRxFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.LinkRxFrame {
 		if len(data) < LinkRXFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as link-rx telemetry frame. expected length %d, but got %d", data, LinkRXFrameSize, len(data)))
 		}
 		frame := LinkRXFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.LinkTxFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.LinkTxFrame {
 		if len(data) < LinkTXFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as link-tx telemetry frame. expected length %d, but got %d", data, LinkTXFrameSize, len(data)))
 		}
 		frame := LinkTXFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.GpsFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.GpsFrame {
 		if len(data) < GPSFrameSize {
 			return nil, errors.New(fmt.Sprintf("cannot unmarshal %x as gps telemetry frame. expected length %d, but got %d", data, GPSFrameSize, len(data)))
 		}
 		frame := GPSFrame{RawData: data}
 		return &frame, nil
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.BaroAltFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.BaroAltFrame {
 		if len(data) == BarometerFrameSize {
 			//TBS sends barometer data by itself
 			frame := BarometerFrame{RawData: data}
@@ -255,7 +256,7 @@ func Unmarshal(data []byte) (TelemType, error) {
 			frame := BarometerVariometerFrame{RawData: data}
 			return &frame, nil
 		}
-	} else if fAddr == crossfire.HandsetEndpoint && fType == crossfire.VarioFrame {
+	} else if fAddr == crossfire.FlightControllerEndpoint && fType == crossfire.VarioFrame {
 		//TBS sends variometer data by itself
 		if len(data) == VariometerFrameSize {
 			frame := VariometerFrame{RawData: data}
