@@ -1,0 +1,755 @@
+{
+  "nodes": [
+    {
+      "width": 72,
+      "height": 63,
+      "type": "gamepad",
+      "selected": false,
+      "id": "9",
+      "position": {
+        "x": 887.5,
+        "y": 850.5
+      },
+      "data": {
+        "label": "RM TX12",
+        "id": "c9eb27"
+      },
+      "positionAbsolute": {
+        "x": 887.5,
+        "y": 850.5
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "14",
+      "position": {
+        "x": 523,
+        "y": 703.75
+      },
+      "data": {
+        "label": "A",
+        "number": "0",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 523,
+        "y": 703.75
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "18",
+      "position": {
+        "x": 612,
+        "y": 704.75
+      },
+      "data": {
+        "label": "E",
+        "number": "1",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 612,
+        "y": 704.75
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "19",
+      "position": {
+        "x": 700,
+        "y": 705.25
+      },
+      "data": {
+        "label": "T",
+        "number": "2",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 700,
+        "y": 705.25
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "20",
+      "position": {
+        "x": 786,
+        "y": 704.75
+      },
+      "data": {
+        "label": "R",
+        "number": "3",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 786,
+        "y": 704.75
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 71,
+      "type": "tx",
+      "selected": false,
+      "id": "22",
+      "position": {
+        "x": 881,
+        "y": 488.25
+      },
+      "data": {
+        "label": "ttyUSB0",
+        "port": "/dev/ttyUSB0"
+      },
+      "positionAbsolute": {
+        "x": 881,
+        "y": 488.25
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "23",
+      "position": {
+        "x": 524,
+        "y": 603.75
+      },
+      "data": {
+        "label": "A",
+        "number": "1",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 524,
+        "y": 603.75
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "24",
+      "position": {
+        "x": 615.5,
+        "y": 602.75
+      },
+      "data": {
+        "label": "E",
+        "number": "2",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 615.5,
+        "y": 602.75
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "25",
+      "position": {
+        "x": 700.5,
+        "y": 602.25
+      },
+      "data": {
+        "label": "T",
+        "number": "3",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 700.5,
+        "y": 602.25
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "26",
+      "position": {
+        "x": 788,
+        "y": 603.25
+      },
+      "data": {
+        "label": "R",
+        "number": "4",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 788,
+        "y": 603.25
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 71,
+      "type": "button",
+      "selected": false,
+      "id": "31",
+      "position": {
+        "x": 1240.25,
+        "y": 709.625
+      },
+      "data": {
+        "label": "AUX5",
+        "number": "0",
+        "active_value": 32767,
+        "inactive_value": "0"
+      },
+      "positionAbsolute": {
+        "x": 1240.25,
+        "y": 709.625
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 71,
+      "type": "button",
+      "selected": false,
+      "id": "32",
+      "position": {
+        "x": 1316.25,
+        "y": 708.125
+      },
+      "data": {
+        "label": "AUX6",
+        "number": "1",
+        "active_value": 32767,
+        "inactive_value": "0"
+      },
+      "positionAbsolute": {
+        "x": 1316.25,
+        "y": 708.125
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "36",
+      "position": {
+        "x": 1237.65,
+        "y": 601.5749999999999
+      },
+      "data": {
+        "label": "AUX5",
+        "number": "9",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 1237.65,
+        "y": 601.5749999999999
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "37",
+      "position": {
+        "x": 1312.45,
+        "y": 601.775
+      },
+      "data": {
+        "label": "AUX6",
+        "number": "10",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 1312.45,
+        "y": 601.775
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "38",
+      "position": {
+        "x": 901.85,
+        "y": 708.7749999999999
+      },
+      "data": {
+        "label": "SE",
+        "number": "4",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 901.85,
+        "y": 708.7749999999999
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "39",
+      "position": {
+        "x": 988.2500000000001,
+        "y": 706.9749999999999
+      },
+      "data": {
+        "label": "SF",
+        "number": "5",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 988.2500000000001,
+        "y": 706.9749999999999
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "41",
+      "position": {
+        "x": 901.8499999999999,
+        "y": 604.375
+      },
+      "data": {
+        "label": "SE",
+        "number": "5",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 901.8499999999999,
+        "y": 604.375
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "42",
+      "position": {
+        "x": 989.45,
+        "y": 603.775
+      },
+      "data": {
+        "label": "SF",
+        "number": "6",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 989.45,
+        "y": 603.775
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "43",
+      "position": {
+        "x": 1072.85,
+        "y": 709.9749999999999
+      },
+      "data": {
+        "label": "SB",
+        "number": "6",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 1072.85,
+        "y": 709.9749999999999
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 72,
+      "type": "axis",
+      "selected": false,
+      "id": "44",
+      "position": {
+        "x": 1153.25,
+        "y": 709.9749999999999
+      },
+      "data": {
+        "label": "SC",
+        "number": "7",
+        "output_invert": false,
+        "deadzone": "0"
+      },
+      "positionAbsolute": {
+        "x": 1153.25,
+        "y": 709.9749999999999
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "45",
+      "position": {
+        "x": 1074.65,
+        "y": 604.975
+      },
+      "data": {
+        "label": "SB",
+        "number": "7",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 1074.65,
+        "y": 604.975
+      },
+      "dragging": false
+    },
+    {
+      "width": 72,
+      "height": 68,
+      "type": "channel",
+      "selected": false,
+      "id": "46",
+      "position": {
+        "x": 1154.2500000000002,
+        "y": 607.575
+      },
+      "data": {
+        "label": "SC",
+        "number": "8",
+        "crsf_max": 1984,
+        "crsf_min": 0,
+        "raw_max": 32767,
+        "raw_min": "-32768"
+      },
+      "positionAbsolute": {
+        "x": 1154.2500000000002,
+        "y": 607.575
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "14",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-14in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "18",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-18in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "19",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-19in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "20",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-20in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "14",
+      "sourceHandle": "out1",
+      "target": "23",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-14out1-23in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "18",
+      "sourceHandle": "out1",
+      "target": "24",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-18out1-24in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "19",
+      "sourceHandle": "out1",
+      "target": "25",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-19out1-25in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "20",
+      "sourceHandle": "out1",
+      "target": "26",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-20out1-26in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "26",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-26out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "25",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-25out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "24",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-24out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "23",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-23out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "31",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-31in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "32",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-32in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "31",
+      "sourceHandle": "out1",
+      "target": "36",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-31out1-36in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "32",
+      "sourceHandle": "out1",
+      "target": "37",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-32out1-37in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "36",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-36out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "37",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-37out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "38",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-38in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "39",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-39in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "38",
+      "sourceHandle": "out1",
+      "target": "41",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-38out1-41in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "39",
+      "sourceHandle": "out1",
+      "target": "42",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-39out1-42in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "41",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-41out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "42",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-42out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "45",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-45out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "46",
+      "sourceHandle": "out1",
+      "target": "22",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-46out1-22in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "43",
+      "sourceHandle": "out1",
+      "target": "45",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-43out1-45in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "44",
+      "sourceHandle": "out1",
+      "target": "46",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-44out1-46in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "43",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-43in1"
+    },
+    {
+      "type": "RemovableEdge",
+      "source": "9",
+      "sourceHandle": "out1",
+      "target": "44",
+      "targetHandle": "in1",
+      "id": "reactflow__edge-9out1-44in1"
+    }
+  ],
+  "viewport": {
+    "x": -940.25,
+    "y": -926.25,
+    "zoom": 2
+  },
+  "metadata": {
+    "details": {},
+    "key": "inputs_config"
+  }
+}
